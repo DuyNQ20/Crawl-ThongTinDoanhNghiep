@@ -51,15 +51,15 @@ namespace APICrawlDataThongTinDoanhNghiep.Controllers
                     var data = ExtensionMethod.Crawl(pageUrl, pageSize);
                     try
                     {
+                        var listTemp = data.LtsItems.GroupBy(x => x.MaSoThue);
                         var taxs = new List<Tax>();
-                        foreach (var item in data.LtsItems)
+                        foreach (var item in listTemp)
                         {
-                            var checkExist = _dataContext.Taxs.Select(x => x.MaSoThue).FirstOrDefault(x => x == item.MaSoThue);
+                            var it = item.First();
+                            var checkExist = _dataContext.Taxs.Find(it.MaSoThue);
                             if (checkExist == null)
                             {
-                                if(taxs.Select(x => x.MaSoThue).FirstOrDefault(x => x == item.MaSoThue) == null)
-                                    taxs.Add(item);
-
+                                taxs.Add(it);
                             }
                         }
 
@@ -142,48 +142,48 @@ namespace APICrawlDataThongTinDoanhNghiep.Controllers
             "dong-thap",
             "gia-lai",
             "ha-giang",
-            //"ha-nam",
-            ////"ha-noi",
-            //"ha-tinh",
-            //"hai-duong",
-            //"hai-phong",
-            //"hau-giang",
-            //"hoa-binh",
-            //"hue",
-            //"hung-yen",
-            //"khanh-hoa",
-            //"kien-giang",
-            //"kon-tum",
-            //"lai-chau",
-            //"lam-dong",
-            //"lang-son",
-            //"lao-cai",
-            //"long-an",
-            //"nam-dinh",
-            //"nghe-an",
-            //"ninh-binh",
-            //"ninh-thuan",
-            //"phu-tho",
-            //"phu-yen",
-            //"quang-binh",
-            //"quang-nam",
-            //"quang-ngai",
-            //"quang-ninh",
-            //"quang-tri",
-            //"soc-trang",
-            //"son-la",
-            //"tay-ninh",
-            //"thai-binh",
-            //"thai-nguyen",
-            //"thanh-hoa",
-            //"tien-giang",
-            ////"tp-ho-chi-minh",
-            //"tra-vinh",
-            //"tuyen-quang",
-            //"vinh-long",
-            //"vinh-phuc",
-            //"vung-tau",
-            //"yen-bai",
+            "ha-nam",
+            "ha-noi",
+            "ha-tinh",
+            "hai-duong",
+            "hai-phong",
+            "hau-giang",
+            "hoa-binh",
+            "hue",
+            "hung-yen",
+            "khanh-hoa",
+            "kien-giang",
+            "kon-tum",
+            "lai-chau",
+            "lam-dong",
+            "lang-son",
+            "lao-cai",
+            "long-an",
+            "nam-dinh",
+            "nghe-an",
+            "ninh-binh",
+            "ninh-thuan",
+            "phu-tho",
+            "phu-yen",
+            "quang-binh",
+            "quang-nam",
+            "quang-ngai",
+            "quang-ninh",
+            "quang-tri",
+            "soc-trang",
+            "son-la",
+            "tay-ninh",
+            "thai-binh",
+            "thai-nguyen",
+            "thanh-hoa",
+            "tien-giang",
+            "tp-ho-chi-minh",
+            "tra-vinh",
+            "tuyen-quang",
+            "vinh-long",
+            "vinh-phuc",
+            "vung-tau",
+            "yen-bai",
             });
         }
 

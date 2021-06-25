@@ -14,7 +14,7 @@ namespace APICrawlDataThongTinDoanhNghiep.Models
         public int Type { get; set; }
         public string SolrID { get; set; }
         
-        public DateTime NgayCap { get; set; }
+        public string NgayCap { get; set; }
         public string NgayDongMST { get; set; }
         public string Title { get; set; }
         public string TitleEn { get; set; }
